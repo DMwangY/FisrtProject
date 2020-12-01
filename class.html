@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+        // 父类
+        class Car{
+            constructor(){
+               
+            }
+
+            hello(){
+                console.log("hello world");
+            }
+        }
+        // 子类
+        class ChildCar extends Car{
+            // 在子类的构造函数中调用父类的构造函数，super()
+            constructor(){
+                super();
+
+            }
+        }
+
+        let childCar = new ChildCar();
+        childCar.hello();
+
+        // super可以有两种用法，一种：作为函数调用，代表父类的构造函数
+        // 另一种：super作为对象，在普通方法中，代表父类的原型对象；在静态方法中，指向父类
+        class A{
+            func(){
+                console.log("普通函数。。。");
+            }
+            static func(){
+                console.log("静态方法。。。")
+            }
+        }
+        // 子类
+        class B extends A{
+            constructor(){
+                super();// super是函数，父类的构造函数
+            }
+
+            // 普通函数
+            childFunc(){
+                super.func();
+            }
+            // 静态方法
+            static childFunc(){
+                super.func();
+            }
+        }
+
+        let b = new B();
+        b.childFunc();
+
+        B.childFunc();
+
+        // 带有参数的继承
+        class A2{
+            x = 2;
+            constructor(name){
+                this.name = name;
+            }
+            year = 2010;
+        }
+        class B2 extends A2{
+            constructor(name){
+                super(name);
+                this.x = 5;
+            }
+        }
+
+        let b2 = new B2("张三");
+        console.log(b2.name)
+        console.log(b2.year)
+        console.log(b2.x)
+
+    </script>
+</body>
+</html>
